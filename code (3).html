@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS EAPCET 2025 College Explorer (Based on 2024 Data)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.3em;
+            font-weight: 600;
+        }
+        header p.subtitle {
+            margin-top: 8px;
+            font-size: 1.15em;
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: #0056b3;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 12px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.9em;
+            font-weight: 500;
+        }
+        h3 {
+            color: #0069d9;
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: 500;
+        }
+        p, li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            color: #495057;
+        }
+        ul.document-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul.document-list li {
+            background-color: #eef3f7;
+            border-left: 5px solid #007bff;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease-in-out;
+        }
+        ul.document-list li:hover {
+            background-color: #dfe9f3;
+        }
+        ul.document-list li::before {
+            content: "📄";
+            margin-right: 10px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .important-note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 25px;
+            color: #856404;
+        }
+        .important-note ol {
+            padding-left: 20px;
+        }
+        .important-note li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003d80;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background-color: #343a40;
+            color: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #ced4da;
+        }
+
+        /* College Explorer Styles */
+        #collegeExplorerSection {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #0056b3;
+            font-size: 0.95em;
+        }
+        .filter-group input[type="number"],
+        .filter-group select {
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #fff;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .filter-group input[type="number"]:focus,
+        .filter-group select:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        #exploreCollegesButton {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            max-width: 280px;
+            display: block;
+            margin: 25px auto 0;
+        }
+        #exploreCollegesButton:hover {
+            background-color: #0056b3;
+        }
+        #resultsTableContainer {
+            margin-top: 25px;
+            overflow-x: auto;
+        }
+        table.results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        table.results-table th, table.results-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+            white-space: nowrap; /* Prevents text wrapping in cells */
+        }
+        table.results-table th {
+            background-color: #0069d9;
+            color: white;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        table.results-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        table.results-table tr:hover {
+            background-color: #e9ecef;
+        }
+        .no-results-message {
+            text-align: center;
+            color: #555;
+            padding: 25px;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TS EAPCET College Explorer</h1>
+        <p class="subtitle">Explore Potential Colleges for 2025 (Based on 2024 Cutoff Data)</p>
+    </header>
+
+    <div class="container">
+        <section id="collegeExplorerSection">
+            <h2>College Explorer</h2>
+            <p>Enter your EAPCET rank and category to see colleges and branches where you might have had a chance in 2024. This data is indicative for 2025. Use additional filters to refine your search.</p>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="eamcetRank">Your EAPCET Rank:</label>
+                    <input type="number" id="eamcetRank" placeholder="Enter your rank" required>
+                </div>
+                <div class="filter-group">
+                    <label for="eamcetCategory">Your Category:</label>
+                    <select id="eamcetCategory" required>
+                        <option value="">-- Select Category --</option>
+                    </select>
+                </div>
+                 <div class="filter-group">
+                    <label for="branchCodeFilter">Branch Code (Optional):</label>
+                    <select id="branchCodeFilter">
+                        <option value="">-- All Branch Codes --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="branchNameFilter">Course/Branch Name (Optional):</label>
+                    <select id="branchNameFilter">
+                        <option value="">-- All Branches --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="collegeTypeFilter">College Type (Optional):</label>
+                    <select id="collegeTypeFilter">
+                        <option value="">-- All Types --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="districtFilter">District (Optional):</label>
+                    <select id="districtFilter">
+                        <option value="">-- All Districts --</option>
+                    </select>
+                </div>
+            </div>
+            <button id="exploreCollegesButton">Explore Colleges</button>
+            <div id="resultsTableContainer">
+                <p class="no-results-message">Enter your rank & category, then click "Explore Colleges".</p>
+            </div>
+             <div class="important-note">
+                <p><strong>Disclaimer for College Explorer:</strong></p>
+                <ol>
+                    <li>This explorer uses aggregated TS EAPCET 2024 data from all counselling phases. Actual cutoffs for 2025 may vary significantly.</li>
+                    <li>The "Phase" column in the results indicates the 2024 counselling phase from which that specific cutoff rank was sourced.</li>
+                    <li>This tool is for informational purposes to help assess possibilities and <strong>does not guarantee admission.</strong></li>
+                    <li>Always refer to official TSCHE notifications for the most current and authoritative information for the upcoming counselling.</li>
+                    <li>"N/A" in rank columns means data was not available, not applicable, or no seat was allotted for that category/college/branch combination in the source data for that phase.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="documents-required">
+            <h2>List of Documents Required for TS EAPCET Counselling (General Reference for 2025)</h2>
+            <p>Ensure you have all the following documents ready (originals and typically 2-3 sets of photocopies) for a smooth counselling process. This list is based on previous years; always check the official 2025 notification.</p>
+            <ul class="document-list">
+                <li>TS EAPCET 2025 Rank Card</li>
+                <li>TS EAPCET Hall Ticket 2025</li>
+                <li>Aadhaar Card</li>
+                <li>Mark Sheets of all classes from class 6 onward to qualifying degree/Intermediate</li>
+                <li>Transfer Certificate (T.C) from the school/college last attended</li>
+                <li>Intermediate or its equivalent Memo-cum-Pass Certificate</li>
+                <li>Income Certificate issued after January 1, 2025 (if applicable)</li>
+                <li>Caste Certificate issued by competent authority (if applicable)</li>
+                <li>Residence certificate of either of parents in Telangana for 10 years (in case of Non-Local candidates)</li>
+                <li>Physically Challenged (PH) / Children of Armed Personnel (CAP) / NCC/Sports / Minority certificate (if applicable)</li>
+                <li>Residence certificate in case where the candidate has no institutionalized education.</li>
+            </ul>
+        </section>
+
+        <section id="special-category-documents">
+            <h3>Additional Documents for PH/CAP/NCC/Sports/Minority Candidates</h3>
+             <ul class="document-list">
+                <li><strong>PH:</strong> Certificate from District Medical Board (40%+ disability).</li>
+                <li><strong>CAP:</strong> Certificate from Zilla Sainik Welfare Officer, ID card, Discharge book (Ex-Servicemen) / Service Certificate (in-service men).</li>
+                <li><strong>NCC & Sports:</strong> Original Certificates from competent authorities.</li>
+                <li><strong>Minorities:</strong> SSC T.C. (Transfer Certificate) containing Minority Status or a Certificate from the headmaster of the school last attended explicitly stating minority status.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> TS EAPCET College Explorer. For informational purposes only.</p>
+        <p>Always verify information with official TSCHE sources for the current admission year.</p>
+    </footer>
+
+    <script>
+        // --- DATA (Representative Snippets - In a real app, load full data) ---
+        // Updated sample data to include more variety of branches
+        const rawDataFirstPhase = `TGEAPCET-2024 LAST RANK STATEMENT FIRST PHASE,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Inst Code",Institute Name,Place,"Dist Code",Co Education,College Type,Year of Estab,Branch Code,Branch Name,"OC BOYS","OC GIRLS","BC_A BOYS","BC_A GIRLS","BC_B BOYS","BC_B GIRLS","BC_C BOYS","BC_C GIRLS","BC_D BOYS","BC_D GIRLS","BC_E BOYS","BC_E GIRLS","SC BOYS","SC GIRLS","ST BOYS","ST GIRLS","EWS GEN OU","EWS GIRLS OU",Tuition Fee,Affiliated To
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,CSE,COMPUTER SCIENCE AND ENGINEERING,26588,29938,52666,62471,38568,38568,26588,108434,38368,38368,53852,53852,70513,75671,70477,83930,30771,38034,60000,JNTUH
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,CSM,COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING),37420,37420,72671,72671,49319,52239,37420,37420,52828,73705,70732,74189,94651,94651,100577,168832,47357,47357,60000,JNTUH
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,ECE,ELECTRONICS AND COMMUNICATION ENGINEERING,54242,54242,101521,101521,76946,85866,54242,54242,75251,82142,134835,134835,125763,125763,119658,174032,82588,82588,60000,JNTUH
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,EEE,ELECTRICAL AND ELECTRONICS ENGINEERING,70937,70937,146480,146480,109373,109373,70937,70937,108683,108683,70937,70937,162464,171633,131469,172264,97335,101749,60000,JNTUH
+ACEG,A C E ENGINEERING COLLEGE (AUTONOMOUS),GHATKESAR,MDL,COED,PVT,2007,CSE,COMPUTER SCIENCE AND ENGINEERING,23711,23711,57406,57406,35719,35719,87671,87671,34098,34098,64109,74019,77511,77511,88227,116375,27936,27936,110000,JNTUH
+ACEG,A C E ENGINEERING COLLEGE (AUTONOMOUS),GHATKESAR,MDL,COED,PVT,2007,MEC,MECHANICAL ENGINEERING,60813,100014,105181,124523,110770,132466,104832,104832,91013,155283,60813,100014,157564,157564,165440,166439,91325,157762,110000,JNTUH
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,CSE,COMPUTER SCIENCE AND ENGINEERING,1903,2191,4037,5360,2638,3315,6390,6390,2764,3327,3468,6154,9605,14056,10684,12963,2432,2589,140000,OU
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,EEE,ELECTRICAL AND ELECTRONICS ENGINEERING,11431,12015,29044,47758,18385,21494,11431,12015,20883,20883,35484,35484,34757,43438,27489,41662,14467,15767,140000,OU
+VJEC,V N R VIGNANA JYOTHI INSTITUTE OF ENGG AND TECH,BACHUPALLY,MDL,COED,PVT,1995,CSE,COMPUTER SCIENCE AND ENGINEERING,2008,2019,3821,5921,2593,2919,4550,4618,3098,3098,4382,9233,10123,11986,13748,15093,2369,2369,135000,JNTUH
+VJEC,V N R VIGNANA JYOTHI INSTITUTE OF ENGG AND TECH,BACHUPALLY,MDL,COED,PVT,1995,MEC,MECHANICAL ENGINEERING,25542,38663,89415,129107,44548,64299,25542,38663,37462,58054,89033,137832,78755,97761,81758,142934,37639,49337,135000,JNTUH`;
+
+        const rawDataSecondPhase = `TGEAPCET-2024 LAST RANK STATEMENT SECOND PHASE,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Inst Code",Institute Name,Place,"Dist Code",Co Education,College Type,Year of Estab,Branch Code,Branch Name,"OC BOYS","OC GIRLS","BC_A BOYS","BC_A GIRLS","BC_B BOYS","BC_B GIRLS","BC_C BOYS","BC_C GIRLS","BC_D BOYS","BC_D GIRLS","BC_E BOYS","BC_E GIRLS","SC BOYS","SC GIRLS","ST BOYS","ST GIRLS","EWS GEN OU","EWS GIRLS OU",Tuition Fee,Affiliated To
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,CSE,COMPUTER SCIENCE AND ENGINEERING,29992,29992,103834,103834,59947,60553,29992,83767,60701,60701,103833,103833,111734,111734,70477,103489,53223,53223,60000,JNTUH
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,ECE,ELECTRONICS AND COMMUNICATION ENGINEERING,35712,45133,144723,144723,100079,100079,35712,45133,80161,94922,157375,157375,169693,170317,162226,174032,67995,67995,60000,JNTUH
+ACEG,A C E ENGINEERING COLLEGE (AUTONOMOUS),GHATKESAR,MDL,COED,PVT,2007,EEE,ELECTRICAL AND ELECTRONICS ENGINEERING,43862,43862,153376,153376,81055,92052,43862,43862,79127,79127,43862,93017,144076,165084,116495,158921,79242,80152,110000,JNTUH
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,CSE,COMPUTER SCIENCE AND ENGINEERING,2667,2843,4592,7064,3009,3949,6390,6390,2933,3327,3995,6154,11455,14461,12359,20287,2868,2902,140000,OU
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,MEC,MECHANICAL ENGINEERING,21683,30367,61538,79595,41839,63043,33679,33679,37046,54089,46916,60167,74390,128885,69960,91252,32327,37153,140000,OU
+VJEC,V N R VIGNANA JYOTHI INSTITUTE OF ENGG AND TECH,BACHUPALLY,MDL,COED,PVT,1995,CSE,COMPUTER SCIENCE AND ENGINEERING,2386,2386,3821,5921,2731,3158,4550,4618,2871,3333,5732,9233,11096,12413,15888,15888,2520,2520,135000,JNTUH`;
+
+        const rawDataFinalPhase = `TGEAPCET-2024 LAST RANK STATEMENT FINAL PHASE,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Inst Code",Institute Name,Place,"Dist Code",Co Education,College Type,Year of Estab,Branch Code,Branch Name,"OC BOYS","OC GIRLS","BC_A BOYS","BC_A GIRLS","BC_B BOYS","BC_B GIRLS","BC_C BOYS","BC_C GIRLS","BC_D BOYS","BC_D GIRLS","BC_E BOYS","BC_E GIRLS","SC BOYS","SC GIRLS","ST BOYS","ST GIRLS","EWS GEN OU","EWS GIRLS OU",Tuition Fee,Affiliated To
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,CSE,COMPUTER SCIENCE AND ENGINEERING,29938,29938,129031,148571,79270,79270,29938,80709,66675,88154,102225,102225,149080,149080,73548,177253,53223,57772,60000,JNTUH
+AARM,AAR MAHAVEER ENGINEERING COLLEGE,BANDLAGUDA,HYD,COED,PVT,2010,MEC,MECHANICAL ENGINEERING,39600,39600,154928,177817,163547,163547,142190,142190,122586,161291,123600,162441,172635,176589,158771,158771,161281,161281,60000,JNTUH
+ACEG,A C E ENGINEERING COLLEGE (AUTONOMOUS),GHATKESAR,MDL,COED,PVT,2007,CSE,COMPUTER SCIENCE AND ENGINEERING,28981,28981,64755,64755,47971,51168,89745,129991,46470,49932,78507,85471,90194,94719,109083,149765,32697,32697,110000,JNTUH
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,CSE,COMPUTER SCIENCE AND ENGINEERING,2912,3067,4730,7064,3055,3949,6653,6653,3047,3327,3995,6154,12458,14464,13574,21350,2912,3456,140000,OU
+CBIT,CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY,GANDIPET,RR,COED,PVT,1979,ECE,ELECTRONICS AND COMMUNICATION ENGINEERING,6812,7902,18723,19732,9655,13644,10161,21580,8772,13305,12847,22327,24444,26113,23388,32068,7895,7902,140000,OU
+VJEC,V N R VIGNANA JYOTHI INSTITUTE OF ENGG AND TECH,BACHUPALLY,MDL,COED,PVT,1995,CSE,COMPUTER SCIENCE AND ENGINEERING,2580,2580,3821,5921,2894,3158,4550,4618,2871,3333,5732,9233,11096,11851,18372,18822,2580,2580,135000,JNTUH`;
+
+        const predefinedHeaders = [
+            "Inst Code", "Institute Name", "Place", "Dist Code", "Co Education", "College Type", "Year of Estab",
+            "Branch Code", "Branch Name", "OC BOYS", "OC GIRLS", "BC_A BOYS", "BC_A GIRLS",
+            "BC_B BOYS", "BC_B GIRLS", "BC_C BOYS", "BC_C GIRLS", "BC_D BOYS", "BC_D GIRLS",
+            "BC_E BOYS", "BC_E GIRLS", "SC BOYS", "SC GIRLS", "ST BOYS", "ST GIRLS",
+            "EWS GEN OU", "EWS GIRLS OU", "Tuition Fee", "Affiliated To"
+        ];
+
+        const rankCategories = { // Key: Header name in CSV, Value: Display name
+            "OC BOYS": "OC Boys", "OC GIRLS": "OC Girls",
+            "BC_A BOYS": "BC-A Boys", "BC_A GIRLS": "BC-A Girls",
+            "BC_B BOYS": "BC-B Boys", "BC_B GIRLS": "BC-B Girls",
+            "BC_C BOYS": "BC-C Boys", "BC_C GIRLS": "BC-C Girls",
+            "BC_D BOYS": "BC-D Boys", "BC_D GIRLS": "BC-D Girls",
+            "BC_E BOYS": "BC-E Boys", "BC_E GIRLS": "BC-E Girls",
+            "SC BOYS": "SC Boys", "SC GIRLS": "SC Girls",
+            "ST BOYS": "ST Boys", "ST GIRLS": "ST Girls",
+            "EWS GEN OU": "EWS General", "EWS GIRLS OU": "EWS Girls"
+        };
+
+        function parseCSVData(csvString, phaseName) {
+            const rows = csvString.trim().split('\n');
+            const data = [];
+            if (rows.length < 2) return data;
+
+            const headers = predefinedHeaders;
+
+            for (let i = 2; i < rows.length; i++) {
+                const values = rows[i].split(',');
+                if (values.length < headers.length) continue;
+                const entry = {};
+                headers.forEach((header, index) => {
+                    let value = values[index] ? values[index].trim().replace(/"/g, '') : "NA";
+                    if (Object.keys(rankCategories).includes(header) || header === "Tuition Fee" || header === "Year of Estab") {
+                        const numValue = parseInt(value, 10);
+                        entry[header] = isNaN(numValue) ? null : numValue;
+                    } else {
+                        entry[header] = value;
+                    }
+                });
+                entry["Phase"] = phaseName; // Add phase information to each entry
+                data.push(entry);
+            }
+            return data;
+        }
+
+        const collegeDataFirstPhase = parseCSVData(rawDataFirstPhase, "First Phase");
+        const collegeDataSecondPhase = parseCSVData(rawDataSecondPhase, "Second Phase");
+        const collegeDataFinalPhase = parseCSVData(rawDataFinalPhase, "Final Phase");
+
+        // Combine all phase data for a comprehensive search
+        const allCollegeData = [
+            ...collegeDataFirstPhase,
+            ...collegeDataSecondPhase,
+            ...collegeDataFinalPhase
+        ];
+
+        // --- DOM Elements ---
+        const rankInput = document.getElementById('eamcetRank');
+        const categorySelect = document.getElementById('eamcetCategory');
+        const branchCodeFilterSelect = document.getElementById('branchCodeFilter');
+        const branchNameFilterSelect = document.getElementById('branchNameFilter');
+        const collegeTypeFilterSelect = document.getElementById('collegeTypeFilter');
+        const districtFilterSelect = document.getElementById('districtFilter');
+        const exploreButton = document.getElementById('exploreCollegesButton');
+        const resultsTableContainer = document.getElementById('resultsTableContainer');
+
+        // --- Populate Dropdowns ---
+        function populateSelectWithOptions(selectElement, options, defaultText = null) {
+            if(defaultText) selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+            const uniqueOptions = [...new Set(options.filter(opt => opt && opt.trim() !== "" && opt.trim() !== "NA"))].sort(); // Filter out empty/NA before creating options
+            uniqueOptions.forEach(optionValue => {
+                const option = document.createElement('option');
+                option.value = optionValue;
+                option.textContent = optionValue;
+                selectElement.appendChild(option);
+            });
+        }
+
+        populateSelectWithOptions(branchCodeFilterSelect, allCollegeData.map(item => item["Branch Code"]), "-- All Branch Codes --");
+        populateSelectWithOptions(branchNameFilterSelect, allCollegeData.map(item => item["Branch Name"]), "-- All Branches --");
+        populateSelectWithOptions(collegeTypeFilterSelect, allCollegeData.map(item => item["College Type"]), "-- All Types --");
+        populateSelectWithOptions(districtFilterSelect, allCollegeData.map(item => item["Dist Code"]), "-- All Districts --");
+
+        for (const key in rankCategories) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = rankCategories[key];
+            categorySelect.appendChild(option);
+        }
+
+        // --- Search/Filter Logic ---
+        exploreButton.addEventListener('click', () => {
+            const enteredRankStr = rankInput.value;
+            const selectedCategoryKey = categorySelect.value;
+            const selectedBranchCode = branchCodeFilterSelect.value;
+            const selectedBranchName = branchNameFilterSelect.value;
+            const selectedCollegeType = collegeTypeFilterSelect.value;
+            const selectedDistrict = districtFilterSelect.value;
+
+            if (!enteredRankStr || !selectedCategoryKey) {
+                alert("Please enter your EAPCET Rank and select your Category to explore colleges.");
+                resultsTableContainer.innerHTML = '<p class="no-results-message">Please enter Rank and Category.</p>';
+                return;
+            }
+            const enteredRank = parseInt(enteredRankStr, 10);
+
+            const filteredResults = allCollegeData.filter(item => { // Search across all combined data
+                const cutoffRank = item[selectedCategoryKey];
+
+                if (cutoffRank === null || isNaN(cutoffRank) || enteredRank > cutoffRank) {
+                    return false;
+                }
+                if (selectedBranchCode && item["Branch Code"] !== selectedBranchCode) {
+                    return false;
+                }
+                if (selectedBranchName && item["Branch Name"] !== selectedBranchName) {
+                    return false;
+                }
+                if (selectedCollegeType && item["College Type"] !== selectedCollegeType) {
+                    return false;
+                }
+                if (selectedDistrict && item["Dist Code"] !== selectedDistrict) {
+                    return false;
+                }
+                return true;
+            });
+
+            displayResults(filteredResults, selectedCategoryKey);
+        });
+
+        function displayResults(results, categoryKey) {
+            resultsTableContainer.innerHTML = '';
+            if (results.length === 0) {
+                resultsTableContainer.innerHTML = '<p class="no-results-message">No colleges found matching your criteria for the entered rank and category based on 2024 data.</p>';
+                return;
+            }
+
+            const table = document.createElement('table');
+            table.classList.add('results-table');
+
+            const thead = table.createTHead();
+            const headerRow = thead.insertRow();
+            const displayHeaders = [
+                "Institute Name", "Branch Name", "Branch Code", "Phase",
+                categoryKey, // Dynamically show the cutoff for the user's category
+                "Place", "Dist Code", "College Type", "Tuition Fee"
+            ];
+            
+            displayHeaders.forEach(text => {
+                const th = document.createElement('th');
+                th.textContent = text === categoryKey ? `Cutoff (${rankCategories[categoryKey]})` : text;
+                headerRow.appendChild(th);
+            });
+
+            const tbody = table.createTBody();
+            // Sort results: by institute name, then by branch name
+            results.sort((a, b) => {
+                if (a["Institute Name"] < b["Institute Name"]) return -1;
+                if (a["Institute Name"] > b["Institute Name"]) return 1;
+                if (a["Branch Name"] < b["Branch Name"]) return -1;
+                if (a["Branch Name"] > b["Branch Name"]) return 1;
+                return 0;
+            });
+
+            results.forEach(item => {
+                const row = tbody.insertRow();
+                displayHeaders.forEach(header => {
+                    const cell = row.insertCell();
+                    const cellValue = item[header];
+                    cell.textContent = (cellValue === null || cellValue === undefined || cellValue === "NA") ? "N/A" : cellValue;
+                });
+            });
+
+            resultsTableContainer.appendChild(table);
+        }
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
