@@ -1,102 +1,70 @@
-🎓 TS EAPCET College Explorer
+# TS EAPCET College Explorer
 
-Welcome to the TS EAPCET College Explorer, a modern web tool designed to empower TS EAPCET 2025 aspirants to discover engineering colleges in Telangana! 🌟 Built with HTML, CSS, and JavaScript, this app uses 2024 cutoff data to help you find colleges based on your rank, category, course, and more. With a sleek, responsive UI, dark/light mode toggle, and CSV export, it’s the perfect companion for planning your academic future! 🚀
-✨ Key Features
+A web-based tool to help TS EAPCET 2025 aspirants explore potential engineering colleges in Telangana based on their rank, category, desired course, and additional filters like college type and district. Built with HTML, CSS, and JavaScript, it processes 2024 cutoff data to provide an interactive, sortable results table. The application features a modern, responsive UI with dark/light mode support, CSV export, and accessibility considerations.
 
-🔍 Smart College Filtering: Search by branch, rank, category, college type, and district.
-📊 Interactive Results: Sortable table with college name, branch, cutoff rank, district, type, tuition fee, and phase.
-🔄 Dynamic Dropdowns: Branch codes auto-update based on your selected branch.
-📥 Export to CSV: Save your results for offline analysis.
-🌗 Dark/Light Mode: Switch themes for a personalized experience.
-⏳ Loading Feedback: Smooth UX with loading indicators.
-📱 Fully Responsive: Looks great on desktops, tablets, and phones.
-♿ Accessible Design: ARIA labels, high-contrast colors, and keyboard-friendly navigation.
+## Features
+- **College Filtering**: Filter colleges by branch, rank, category, college type, and district.
+- **Sortable Results**: Interactive table with columns for college name, branch, cutoff rank, district, college type, tuition fee, and phase, sortable by clicking headers.
+- **Dynamic Dropdowns**: Branch code options update based on selected branch name.
+- **Export to CSV**: Download filtered results as a CSV file for offline use.
+- **Dark/Light Mode**: Toggle between themes for user preference.
+- **Loading State**: Visual feedback during data processing.
+- **Responsive Design**: Optimized for desktop and mobile devices.
+- **Accessibility**: ARIA labels, high-contrast colors, and keyboard navigation support.
 
-📸 Screenshots
+## Screenshots
+### Desktop View
+![Desktop View](assets/screenshots/desktop.png)
 
+### Mobile View
+![Mobile View](assets/screenshots/mobile.png)
 
+## Installation
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/TS-EAPCET-College-Explorer.git
+   cd TS-EAPCET-College-Explorer
+   ```
+2. **Serve the Application**:
+   - Use a local server (e.g., Python's HTTP server):
+     ```bash
+     python -m http.server 8000
+     ```
+   - Alternatively, use tools like VS Code's Live Server or a web server (e.g., XAMPP).
+3. **Open in Browser**:
+   - Navigate to `http://localhost:8000` to access the application.
+4. **Ensure Data**:
+   - Place `college_data.json` in the root directory. This file contains the 2024 TS EAPCET cutoff data.
 
-Desktop View
-Mobile View
+## Usage
+1. **Select Filters**:
+   - Choose a branch name, optionally a branch code, your EAPCET rank, category, college type, and district.
+2. **Explore Colleges**:
+   - Click "Explore Colleges" to view filtered results in a sortable table.
+3. **Export Results**:
+   - Click "Export to CSV" to download the results table.
+4. **Toggle Theme**:
+   - Use the "Toggle Theme" button in the header to switch between dark and light modes.
+5. **Reset Form**:
+   - Click "Reset" to clear inputs and results.
 
-
-
-
-
-
-
-🛠️ Getting Started
-Follow these simple steps to run the TS EAPCET College Explorer locally:
-
-Clone the Repository:
-git clone https://github.com/Jacob-projects/TS_EAPCET_College_Explorer.git
-cd TS_EAPCET_College_Explorer
-
-
-Serve the Application:
-
-Launch a local server with Python:python -m http.server 8000
-
-
-Or use tools like VS Code’s Live Server or XAMPP.
-
-
-Open in Browser:
-
-Visit http://localhost:8000 to explore the app.
-
-
-Add Data:
-
-Ensure college_data.json is in the root directory with 2024 TS EAPCET cutoff data.
-
-
-
-🎮 How to Use
-
-Set Your Filters:
-
-Pick a branch (e.g., Computer Science).
-Optionally select a branch code, college type, or district.
-Enter your EAPCET rank and category (e.g., OC_BOYS).
-
-
-Find Colleges:
-
-Click Explore Colleges to see a sortable table of matching colleges.
-
-
-Save Results:
-
-Hit Export to CSV to download your results.
-
-
-Switch Themes:
-
-Use the Toggle Theme button to switch between dark and light modes.
-
-
-Start Over:
-
-Click Reset to clear filters and results.
-
-
-
-📂 Project Structure
-TS_EAPCET_College_Explorer/
-├── index.html           # Main webpage with form and results
+## Project Structure
+```
+TS-EAPCET-College-Explorer/
+├── index.html           # Main webpage
 ├── styles.css           # Styling with dark/light mode support
 ├── script.js            # JavaScript for data processing and interactivity
-├── college_data.json    # 2024 TS EAPCET cutoff data
-├── README.md            # This awesome documentation
-├── LICENSE              # MIT License
+├── college_data.json    # Sample 2024 cutoff data
+├── README.md            # Project documentation
 └── assets/
-    └── screenshots/     # Screenshots for the README
+    └── screenshots/     # Screenshots for README
         ├── desktop.png
         ├── mobile.png
+```
 
-📋 Data Format
-The college_data.json file should look like this:
+## Data Format
+The `college_data.json` should follow this structure (example):
+```json
 [
     {
         "Unnamed: 1": "College Name",
@@ -110,50 +78,21 @@ The college_data.json file should look like this:
     },
     ...
 ]
+```
 
-🤝 Contribute to the Project
-We’d love your help to make this tool even better! 💡 Here’s how to contribute:
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add your feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
 
-Fork the Repository.
-Create a Branch:git checkout -b feature/your-awesome-feature
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## Disclaimer
+This tool uses 2024 TS EAPCET cutoff data and is for informational purposes only. Actual 2025 cutoffs may vary. Always refer to official TSCHE notifications for accurate information.
 
-Commit Changes:git commit -m "Add your awesome feature"
-
-
-Push to GitHub:git push origin feature/your-awesome-feature
-
-
-Submit a Pull Request with a clear description.
-
-Ideas to Explore
-
-🔎 Add a search bar for instant college lookup.
-📈 Include advanced filters (e.g., tuition fee range).
-🌍 Create an interactive map for college locations.
-🔗 Integrate a backend for live cutoff data.
-🌐 Add multi-language support.
-
-Check out our Contributing Guidelines for more details (coming soon!).
-📜 License
-This project is proudly licensed under the MIT License. Feel free to use, modify, and share!
-⚠️ Disclaimer
-The TS EAPCET College Explorer uses 2024 TS EAPCET cutoff data for informational purposes only. Actual 2025 cutoffs may differ. Always check official TSCHE notifications for the latest details.
-Citation: Telangana State Council of Higher Education. (2024). TS EAPCET Official Website. Retrieved from https://eapcet.tsche.ac.in.
-📬 Get in Touch
-Have questions or ideas? Let’s connect! 📩
-
-GitHub Issues: Open an issue for bugs or suggestions.
-Email: Reach out at [jacob@example.com] (replace with your email).
-
-🚀 What’s Next?
-We’re excited to expand the TS EAPCET College Explorer! Planned features include:
-
-Rank Predictor: Estimate your rank based on past trends.
-College Profiles: Detailed pages for each college.
-User Accounts: Save your filter preferences.
-Real-Time Data: Fetch live cutoffs via API.
-
-Star the repo 🌟 to stay updated and join us in making college planning easier for Telangana students!
-
-Built with ❤️ by Jacob-projectsHappy exploring, and best of luck with your TS EAPCET journey! 🎉
+## Contact
+For questions or feedback, open an issue on GitHub or contact [your-email@example.com].
