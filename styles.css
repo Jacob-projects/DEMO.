@@ -10,14 +10,17 @@ body {
     background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
     color: #e2e8f0;
     line-height: 1.7;
+    /* Default padding for larger screens */
     padding: 30px;
     min-height: 100vh;
 }
 
 /* Container Styling */
+/* Max-width prevents content from getting too wide */
 header, main, footer {
     max-width: 1280px;
     margin: 0 auto;
+    /* Default padding for larger screens */
     padding: 32px;
 }
 
@@ -27,7 +30,7 @@ header {
     background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    padding: 40px;
+    /* Padding handled by the header, main, footer rule above */
     margin-bottom: 32px;
     position: relative;
     overflow: hidden;
@@ -64,6 +67,7 @@ header p {
 #college-explorer, #results, #disclaimer, #documents {
     background: #1e293b;
     border-radius: 16px;
+    /* Default padding for sections on larger screens */
     padding: 32px;
     margin-bottom: 32px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
@@ -112,6 +116,8 @@ header p {
     display: flex;
     gap: 20px;
     justify-content: center;
+    /* Adjust margin for smaller screens */
+    margin-top: 30px; /* Added margin-top */
 }
 
 button {
@@ -126,6 +132,8 @@ button {
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-grow: 1; /* Allow buttons to grow on smaller screens */
+    text-align: center; /* Center text in button */
 }
 
 button::before {
@@ -246,7 +254,7 @@ footer {
     text-align: center;
     color: #94a3b8;
     font-size: 0.95rem;
-    padding: 20px;
+    /* Padding handled by the header, main, footer rule above */
     background: #1e293b;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -254,18 +262,40 @@ footer {
 }
 
 /* Responsive Design */
+
+/* Tablet and larger phones */
 @media (max-width: 768px) {
-    header, main, footer {
+    /* Reduce body padding */
+    body {
         padding: 20px;
+    }
+
+    /* Reduce padding on header, main, footer containers */
+    header, main, footer {
+        padding: 24px; /* Slightly less than desktop, more than mobile */
+    }
+
+    /* Reduce padding on sections */
+    #college-explorer, #results, #disclaimer, #documents {
+        padding: 24px; /* Match container padding */
     }
 
     header h1 {
         font-size: 2.25rem;
     }
 
-    .form-group select, .form-group input, button {
+    .form-group label {
+         font-size: 1rem; /* Slightly reduce label size */
+    }
+
+    .form-group select, .form-group input {
         font-size: 0.95rem;
-        padding: 12px;
+        padding: 12px; /* Reduce input/select padding */
+    }
+
+    button {
+        font-size: 1rem; /* Slightly reduce button font size */
+        padding: 12px 20px; /* Adjust button padding */
     }
 
     #results-table th, #results-table td {
@@ -279,13 +309,52 @@ footer {
     }
 }
 
+/* Smaller phones */
 @media (max-width: 480px) {
+    /* Further reduce body padding */
+    body {
+        padding: 15px; /* Smaller padding for very narrow screens */
+    }
+
+     /* Reduce padding on header, main, footer containers */
+    header, main, footer {
+        padding: 16px; /* Further reduce padding */
+    }
+
+    /* Reduce padding on sections */
+    #college-explorer, #results, #disclaimer, #documents {
+        padding: 16px; /* Match container padding */
+    }
+
     header h1 {
         font-size: 1.75rem;
     }
 
-    #college-explorer, #results, #disclaimer, #documents {
-        padding: 20px;
+    header p {
+        font-size: 1rem; /* Reduce header subtitle size */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Reduce section title size */
+    }
+
+    .form-group label {
+        font-size: 0.95rem; /* Further reduce label size */
+        margin-bottom: 8px; /* Reduce label margin */
+    }
+
+    .form-group select, .form-group input {
+        font-size: 0.9rem;
+        padding: 10px; /* Further reduce input/select padding */
+    }
+
+    small {
+        font-size: 0.85rem; /* Reduce help text size */
+    }
+
+    button {
+        font-size: 0.95rem; /* Further reduce button font size */
+        padding: 10px 15px; /* Adjust button padding */
     }
 
     #results-table {
@@ -296,7 +365,15 @@ footer {
         padding: 10px;
     }
 
-    button {
-        padding: 12px 20px;
+    ul {
+        padding-left: 20px; /* Adjust list padding */
+    }
+
+    ul li {
+        margin-bottom: 8px; /* Reduce list item margin */
+    }
+
+    footer {
+        font-size: 0.85rem; /* Reduce footer font size */
     }
 }
